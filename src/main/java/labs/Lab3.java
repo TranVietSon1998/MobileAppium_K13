@@ -3,6 +3,25 @@ package labs;
 import java.util.Arrays;
 
 public class Lab3 {
+
+    public static void sortArray(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                // Find the index of the minimum element in the remaining unsorted array
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            // Swap the found minimum element with the first element
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+    }
     public static void main(String[] args) {
         //Lab3.1
         System.out.println("Lab3.1");
@@ -42,7 +61,7 @@ public class Lab3 {
 
         //Lab3.3
         System.out.println("Lab3.3");
-        Arrays.sort(intArr);
+       sortArray(intArr);
 
         // Printing the sorted array
         System.out.println("Sorted array in ascending order:");
@@ -71,7 +90,8 @@ public class Lab3 {
             intArr3[a1 + i] = intArr2[i];
         }
 
-        Arrays.sort(intArr3);
+//        Arrays.sort(intArr3);
+        sortArray(intArr3);
         System.out.println("Merge 2 SORTED integer array into one SORTED array");
         for (int num : intArr3) {
             System.out.print(num + " ");
