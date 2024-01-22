@@ -5,6 +5,42 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Lab4 {
+
+    public static void run() {
+        ArrayList<Integer> arrayList = generateArrayList();
+        Scanner scanner = new Scanner(System.in);
+
+        int choice;
+        do {
+            System.out.println("=====MENU======");
+            System.out.println("1. Print all numbers");
+            System.out.println("2. Print maximum value");
+            System.out.println("3. Print minimum value");
+            System.out.println("4. Search number");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    printArrayList(arrayList);
+                    break;
+                case 2:
+                    System.out.println("Max value is: " + findMaxNumber(arrayList));
+                    break;
+                case 3:
+                    System.out.println("Min value is: " + findMinNumber(arrayList));
+                    break;
+                case 4:
+                    searchNumber(arrayList);
+                    break;
+            }
+
+        } while (choice != 0);
+    }
+
     public static ArrayList<Integer> generateArrayList() {
         ArrayList<Integer> randomNumberList = new ArrayList<>();
         Random random = new Random();
@@ -77,31 +113,31 @@ public class Lab4 {
     }
 
 
-    public static void arrayWithOptions(ArrayList<Integer> arrayList, int option) {
-        switch (option) {
-            case 1: {
-                printArrayList(arrayList);
-                break;
-            }
-            case 2: {
-                int max = findMaxNumber(arrayList);
-                System.out.println("Max number is: " + max);
-                break;
-
-            }
-            case 3: {
-                int min = findMinNumber(arrayList);
-                System.out.println("Min number is: " + min);
-                break;
-
-            }
-            default: {
-                searchNumber(arrayList);
-                break;
-            }
-        }
-
-    }
+//    public static void arrayWithOptions(ArrayList<Integer> arrayList, int option) {
+//        switch (option) {
+//            case 1: {
+//                printArrayList(arrayList);
+//                break;
+//            }
+//            case 2: {
+//                int max = findMaxNumber(arrayList);
+//                System.out.println("Max number is: " + max);
+//                break;
+//
+//            }
+//            case 3: {
+//                int min = findMinNumber(arrayList);
+//                System.out.println("Min number is: " + min);
+//                break;
+//
+//            }
+//            default: {
+//                searchNumber(arrayList);
+//                break;
+//            }
+//        }
+//
+//    }
 
 
     public static void main(String[] args) {
@@ -117,11 +153,12 @@ public class Lab4 {
         Option 03: We need to find out the minimum number from array list and print out that value
         Option 04: We allow user to input a number to search, if that number is existing in arraylist, we print the number and its index. Otherwise, print that number is not in the list
          */
-        ArrayList<Integer> arrayList = generateArrayList();
-        arrayWithOptions(arrayList, 1);
-        arrayWithOptions(arrayList, 2);
-        arrayWithOptions(arrayList, 3);
-        arrayWithOptions(arrayList, 4);
+//        ArrayList<Integer> arrayList = generateArrayList();
+//        arrayWithOptions(arrayList, 1);
+//        arrayWithOptions(arrayList, 2);
+//        arrayWithOptions(arrayList, 3);
+//        arrayWithOptions(arrayList, 4);
+        run();
 
 
     }
