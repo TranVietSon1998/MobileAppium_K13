@@ -1,10 +1,32 @@
 package labs;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Lab6 {
+
+    public static void countAndPrintWords(String input) {
+        // Remove space
+        String[] words = input.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+
+        Map<String, Integer> wordCountMap = new HashMap<>();
+
+        // Count occurrences of each word
+        for (String word : words) {
+            wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+        }
+
+        // Print the result
+        System.out.println("Output: -->");
+        for (Map.Entry<String, Integer> entry : wordCountMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
+
 
     public static int convertToMinutes(String input) {
         int totalMinutes = 0;
@@ -160,6 +182,21 @@ public class Lab6 {
 
         String url = "https://google.com";
         checkUrlComponents(url);
+
+        /*
+        LAB 6.5 (Optional)
+        Allow user to input a sentence
+        Count the words and group them
+        Ex: Hello, tui ten teo, ban co phai ten teo khong?
+        Output: -->
+        Hello: 1
+        tui: 1
+        teo: 2
+        ...
+         */
+        String sentence = "Hello, tui ten teo, ban co phai ten teo khong?";
+        System.out.println("Input: "+sentence);
+        countAndPrintWords(sentence);
 
 
     }
