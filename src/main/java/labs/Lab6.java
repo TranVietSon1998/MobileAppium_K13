@@ -3,23 +3,22 @@ package labs;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Lab6 {
 
     public static void countAndPrintWords(String input) {
-        // Remove space
+
         String[] words = input.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
 
-        Map<String, Integer> wordCountMap = new HashMap<>();
+        Map<String, Integer> wordCountMap = new TreeMap<>();
 
-        // Count occurrences of each word
         for (String word : words) {
             wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
         }
 
-        // Print the result
         System.out.println("Output: -->");
         for (Map.Entry<String, Integer> entry : wordCountMap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
@@ -30,26 +29,19 @@ public class Lab6 {
 
     public static int convertToMinutes(String input) {
         int totalMinutes = 0;
-        String hoursRegex = "(\\d+)hrs";
-        String minutesRegex = "(\\d+)\\s*minutes";
+        String regex = "(\\d+)\\s*(hrs|minutes)";
 
-        Pattern hoursPattern = Pattern.compile(hoursRegex);
-        Pattern minutesPattern = Pattern.compile(minutesRegex);
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
 
-        Matcher hoursMatcher = hoursPattern.matcher(input);
-        Matcher minutesMatcher = minutesPattern.matcher(input);
-
-        if (hoursMatcher.find()) {
-            int hours = Integer.parseInt(hoursMatcher.group(1));
-            totalMinutes += hours * 60;
+        while (matcher.find()) {
+            int value = Integer.parseInt(matcher.group(1));
+            if (matcher.group(2).equals("hrs")) {
+                totalMinutes += value * 60;
+            } else {
+                totalMinutes += value;
+            }
         }
-
-        // Extract minutes and add to totalMinutes
-        if (minutesMatcher.find()) {
-            int minutes = Integer.parseInt(minutesMatcher.group(1));
-            totalMinutes += minutes;
-        }
-
 
         return totalMinutes;
     }
